@@ -1460,6 +1460,14 @@
 		margin-bottom: 0;
 	}
 
+	h2.project-title {
+		font-size: 24px;
+	}
+
+	p.project-description {
+		font-size: 14px;
+	}
+
 /* Image */
 
 	.image {
@@ -1812,6 +1820,11 @@
 					width: auto;
 				}
 
+				.box.style1 .image img.ankiclone-preview {
+					width: 105%;
+
+				}
+
 			.box.style1 .inner > :last-child {
 				margin: 0;
 			}
@@ -1992,6 +2005,21 @@
 				margin-left: -45px;
 				margin-bottom: -33px;
 				background: url("images/arrow.svg") no-repeat;
+			}
+
+			#header a.about{
+				padding-left: 41px;
+				padding-right: 41px;
+			}
+
+			#header a.works{
+				padding-left: 40px;
+				padding-right: 40px;
+			}
+
+			#header a.contact{
+				padding-left: 31.5px;
+				padding-right: 31.5px;
 			}
 
 /* Banner */
@@ -2486,6 +2514,7 @@
 						margin-bottom: -16.5px;
 						background-size: 45px 33px;
 					}
+
 
 		/* Banner */
 
