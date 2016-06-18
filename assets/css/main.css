@@ -192,6 +192,13 @@
 /* Grid */
 
 /* ICON HOVERS */
+.row a.image.fit:hover div:after {
+	/*color: gold;*/
+	background-color: white;
+	border-radius: 5px;
+	padding: 0px 6px;
+}
+
 .row a.image.fit.rails:hover div.rails:after {
 	content: "Ruby on Rails";
 	position: absolute;
@@ -1389,7 +1396,7 @@
 
 	body {
 		background-color: #183026;
-		background-image: url("images/overlay.png"), url("../../images/bg.jpg");
+		background-image: url("images/overlay.png"), url("../../images/nikko.jpg");
 		background-repeat: repeat, no-repeat;
 		background-size: auto, cover;
 		background-position: top left, center 0;
@@ -1899,8 +1906,20 @@
 				}
 
 				.box.style1 .image img.ankiclone-preview {
-					width: 105%;
+					width: 100%;
 
+				}
+
+				.box.style1 .image img.terminal-chess {
+					width: 100%;
+					/*-ms-transform: rotate(90deg);*/
+					transform: rotate(.02deg);
+				}
+
+				.box.style1 .image img.zomphonia-preview {
+					left: -60px;
+					/*-ms-transform: rotate(90deg);*/
+					transform: rotate(.1deg);
 				}
 
 			.box.style1 .inner > :last-child {
