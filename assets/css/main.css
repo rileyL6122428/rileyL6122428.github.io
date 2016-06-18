@@ -191,6 +191,84 @@
 
 /* Grid */
 
+/* ICON HOVERS */
+.row a.image.fit.rails:hover div.rails:after {
+	content: "Ruby on Rails";
+	position: absolute;
+	left: 23%;
+	top: 79%;
+}
+
+.row a.image.fit.javascript:hover div.javascript:after {
+	content: "JavaScript";
+	position: absolute;
+	left: 29%;
+	top: 92%;
+}
+
+.row a.image.fit.react:hover div.react:after {
+	content: "React";
+	position: absolute;
+	left: 39%;
+	top: 88%;
+}
+
+.row a.image.fit.html:hover div.html:after {
+	content: "HTML";
+	position: absolute;
+	left: 39%;
+	top: 88%;
+}
+
+.row a.image.fit.postgresql:hover div.postgresql:after {
+	content: "PostgreSQL";
+	position: absolute;
+	left: 30%;
+	top: 91%;
+}
+
+.row a.image.fit.git:hover div.git:after {
+	content: "Git";
+	position: absolute;
+	left: 44%;
+	top: 93%;
+}
+
+.row a.image.fit.jquery:hover div.jquery:after {
+	content: "jQuery";
+	position: absolute;
+	left: 38%;
+	top: 85%;
+}
+
+.row a.image.fit.css:hover div.css:after {
+	content: "CSS";
+	position: absolute;
+	left: 43%;
+	top: 88%;
+}
+
+.row a.image.fit.java:hover div.java:after {
+	content: "Java";
+	position: absolute;
+	left: 39%;
+	top: 93%;
+}
+
+.row a.image.fit.processing:hover div.processing:after {
+	content: "Processing";
+	position: absolute;
+	left: 29%;
+	top: 91%;
+}
+
+.row a.image.fit.mathematica:hover div.mathematica:after {
+	content: "Mathematica";
+	position: absolute;
+	left: 27%;
+	top: 90%;
+}
+
 	.row {
 		border-bottom: solid 1px transparent;
 		-moz-box-sizing: border-box;
@@ -2008,18 +2086,24 @@
 			}
 
 			#header a.about{
-				padding-left: 41px;
-				padding-right: 41px;
+				padding-left: 68px;
+				padding-right: 68px;
 			}
 
 			#header a.works{
+				padding-left: 62.5;
+				padding-right: 62.5;
+			}
+
+			#header a.languages{
 				padding-left: 40px;
-				padding-right: 40px;
+				padding-right: 40px
 			}
 
 			#header a.contact{
-				padding-left: 31.5px;
-				padding-right: 31.5px;
+				padding-left: 54px;
+				padding-right: 54px;
+				margin-right: 12px;
 			}
 
 /* Banner */
