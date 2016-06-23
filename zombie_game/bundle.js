@@ -50,7 +50,7 @@
 	var canvasEl = document.getElementById("game-canvas");
 	var ctx = canvasEl.getContext('2d');
 	ctx.canvas.height = 750;
-	ctx.canvas.width  = 1300;
+	ctx.canvas.width  = 1192;
 	
 	var gameView = new GameView(ctx, canvasEl.width, canvasEl.height);
 	gameView.start();
@@ -60,8 +60,7 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Game = __webpack_require__(2);
-	var ZombiePlayroom = __webpack_require__(7);
+	var ZombiePlayroom = __webpack_require__(2);
 	
 	function GameView (ctx, width, height) {
 	  this.ctx = ctx;
@@ -86,475 +85,15 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Player = __webpack_require__(3);
-	var NormalZombie = __webpack_require__(5);
-	
-	function Game (ctx) {
-	  // var image = document.getElementById("test");
-	  //
-	  // this.player = new Player(500, 100);
-	  // this.sampleZombie = new NormalZombie(500, 200, this.player, 0, image);
-	  // this.ctx = ctx;
-	  //
-	  // this.testImage = new Image();
-	  // this.testImage.src = './images/zombie_n_skeleton2.png'
-	}
-	
-	Game.prototype.draw = function () {
-	
-	  // this.sampleZombie.render(this.ctx);
-	  // this.sampleZombie.animate(this.ctx);
-	  // this.player.render(this.ctx);
-	  // this.managePlayerMovement();
-	  // this.sampleZombie.doZombieThings();
-	};
-	
-	Game.prototype.managePlayerMovement = function () {
-	  // if(key.isPressed("d")) { this.player.moveRight(); }
-	  // if(key.isPressed("s")) { this.player.moveDown(); }
-	  // if(key.isPressed("a")) { this.player.moveLeft(); }
-	  // if(key.isPressed("w")) { this.player.moveUp(); }
-	};
-	
-	module.exports = Game;
-
-
-/***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var util = __webpack_require__(4)
-	
-	function Player(x, y, ctx){
-	  this.x = x;
-	  this.y = y;
-	  this.ctx = ctx
-	  this.facing = "DOWN";
-	  this.moving = false;
-	  this.speed = 5;
-	  this.image = document.getElementById('player_spread');
-	  this.width = 30;
-	  this.height = 44;
-	
-	  this.xOffset = 20;
-	
-	  this.warping = false;
-	  this.warpReady = true;
-	}
-	
-	Player.prototype.animate = function (ctx) {
-	  // util.render_circle.call(this, 25, "blue", ctx);
-	  if(!this.warping) {this.animateRegular(ctx);}
-	};
-	
-	
-	Player.prototype.moveUp = function () {
-	
-	  this.y -= this.speed;
-	  this.moving = true;
-	  this.facing = "UP";
-	};
-	
-	Player.prototype.moveDown = function () {
-	  this.y += this.speed;
-	  this.moving = true;
-	  this.facing = "DOWN";
-	};
-	
-	Player.prototype.moveRight = function () {
-	  this.x += this.speed;
-	  this.moving = true;
-	  this.facing = "RIGHT";
-	};
-	
-	Player.prototype.moveLeft = function () {
-	  this.x -= this.speed;
-	  this.moving = true;
-	  this.facing = "LEFT";
-	};
-	
-	Player.prototype.animateRegular = function (ctx) {
-	  switch (this.facing) {
-	    case "DOWN" :this.animateDown(ctx);  break;
-	    case "UP"   :this.animateUp(ctx);    break;
-	    case "RIGHT":this.animateRight(ctx); break;
-	    case "LEFT" :this.animateLeft(ctx);  break;
-	  }
-	};
-	
-	Player.prototype.animateDown = function (ctx) {
-	  var millisecondCounter = (new Date()).getMilliseconds();
-	
-	  if (millisecondCounter < 250 && this.moving) {
-	    ctx.drawImage(this.image, 69, 67, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
-	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.moving) {
-	    ctx.drawImage(this.image, 121, 67, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
-	  } else  {
-	    ctx.drawImage(this.image, 95, 67, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
-	  }
-	};
-	
-	Player.prototype.animateUp = function (ctx) {
-	  var millisecondCounter = (new Date()).getMilliseconds();
-	
-	  if (millisecondCounter < 250 && this.moving) {
-	    ctx.drawImage(this.image, 69, 1, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
-	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.moving) {
-	    ctx.drawImage(this.image, 121, 1, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
-	  } else  {
-	    ctx.drawImage(this.image, 95, 1, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
-	  }
-	};
-	
-	Player.prototype.animateRight = function (ctx) {
-	  var millisecondCounter = (new Date()).getMilliseconds();
-	
-	  if (millisecondCounter < 250 && this.moving) {
-	    ctx.drawImage(this.image, 70, 33, 23, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
-	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.moving) {
-	    ctx.drawImage(this.image, 120, 33, 22, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
-	  } else  {
-	    ctx.drawImage(this.image, 95, 33, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
-	  }
-	};
-	
-	Player.prototype.animateLeft = function (ctx) {
-	  var millisecondCounter = (new Date()).getMilliseconds();
-	
-	  if (millisecondCounter < 250 && this.moving) {
-	    ctx.drawImage(this.image, 69, 98, 23, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
-	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.moving) {
-	    ctx.drawImage(this.image, 120, 98, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
-	  } else  {
-	    ctx.drawImage(this.image, 95, 98, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
-	  }
-	};
-	
-	Player.prototype.warpUp = function () {
-	  this._warp([120, 161], [165, 225], [241, 225], [120, 127], "UP")
-	};
-	
-	
-	Player.prototype.warpDown = function (entrance, exit) {
-	  this._warp([190, 160], [190, 192], [190, 160], [140, 225], "DOWN", entrance, exit);
-	};
-	
-	Player.prototype.warpRight = function () {
-	  this._warp([215, 128], [261, 160], [190, 129], [239, 129], "RIGHT");
-	};
-	
-	Player.prototype.warpLeft = function () {
-	  this._warp([261, 128], [215, 160], [190, 225], [71, 225], "LEFT");
-	};
-	
-	Player.prototype.warpIncrementer = function (direction, distance) {
-	  switch(direction) {
-	    case "DOWN" : this.y += distance; break;
-	    case "RIGHT": this.x += distance; break;
-	    case "LEFT" : this.x -= distance; break;
-	    case "UP"   : this.y -= distance; break;
-	  }
-	};
-	
-	Player.prototype._warp = function (img1, img2, img3, img4, direction, entrance, exit) {
-	  this.warping = true;
-	  this.warpReady = false;
-	  var self = this;
-	
-	  if (!entrance) {
-	    frame1 = setInterval(function () {
-	      self.ctx.drawImage(self.image, img1[0], img1[1], 27, 35, self.x - self.xOffset, self.y -30, self.width, self.height);
-	      // console.log("hello?");
-	    },1000/50)
-	    setTimeout(function(){
-	      clearInterval(frame1);
-	      frame2 = setInterval(function () {
-	        self.ctx.drawImage(self.image, img2[0], img2[1], 27, 34, self.x - self.xOffset, self.y - 30, self.width, self.height);
-	      }, 1000 / 50)
-	    }, 100)
-	
-	    setTimeout(function () { clearInterval(frame2); }, 200)
-	  }
-	
-	  if(!exit) {
-	    setTimeout (function () {
-	      self.warpIncrementer(direction, 135);
-	      frame3 = setInterval(function () {
-	        self.ctx.drawImage(self.image, img3[0], img3[1], 27, 35, self.x - self.xOffset, self.y -30, self.width, self.height);
-	      }, 1000/50)
-	    }, 500)
-	
-	    setTimeout (function () {
-	      clearInterval(frame3);
-	      self.warpIncrementer(direction, 20);
-	      frame4 = setInterval(function () {
-	        self.ctx.drawImage(self.image, img4[0], img4[1], 27, 34, self.x - self.xOffset, self.y - 30, self.width, self.height);
-	      }, 1000/50)
-	    }, 610)
-	
-	    setTimeout(function(){
-	      self.warping = false;
-	      clearInterval(frame4)
-	    }, 710)
-	
-	    setTimeout(function () { self.warpReady = true; }, 3710)
-	  }
-	};
-	
-	module.exports = Player;
-
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	var Util = {
-	  render_circle: function ( radius, color, ctx) {
-	    ctx.fillStyle = color;
-	    ctx.beginPath();
-	
-	    ctx.arc(
-	      this.x,
-	      this.y,
-	      radius,
-	      0,
-	      2 * Math.PI,
-	      false
-	    );
-	
-	    ctx.fill();
-	  },
-	
-	  inherits: function (child, parent) {
-	    var Surrogate = function () {};
-	    Surrogate.prototype = parent.prototype;
-	    child.prototype = new Surrogate();
-	    child.prototype.constructor = child;
-	  },
-	
-	  distance: function (x1, x2, y1, y2) {
-	    return Math.sqrt( Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2) );
-	  },
-	
-	  direction: function (theta) {
-	    if (theta <  Math.PI / 4 && theta > -1 * Math.PI / 4)    { return "RIGHT"; }
-	    if (theta < -Math.PI / 4 && theta > -3 * Math.PI / 4)    { return "DOWN";  }
-	    if (theta >  Math.PI / 4 && theta <  3 * Math.PI / 4)    { return "UP";    }
-	    if (theta <  Math.PI     && theta >  3 * Math.PI / 4 ||
-	        theta > -Math.PI     && theta < -3 * Math.PI / 4)    { return "LEFT";  }
-	
-	  },
-	
-	  limitVector: function (vector, newMagnitude, limit) {
-	    var oldMagnitude = this.distance(0, vector[0], 0, vector[1]);
-	    if (oldMagnitude < limit) { return vector }
-	    var normalizer = newMagnitude / oldMagnitude;
-	    return [ vector[0] * normalizer, vector[1] * normalizer];
-	  }
-	}
-	
-	module.exports = Util;
-
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Util = __webpack_require__(4);
-	var Zombie = __webpack_require__(6);
-	
-	function NormalZombie(x, y, player, theta) {
-	
-	
-	  Zombie.call(this, x, y, player, theta, 2, document.getElementById('test'));
-	  this.awakenRange = 210;
-	  this.width = 35;
-	  this.height = 42;
-	};
-	
-	Util.inherits(NormalZombie, Zombie);
-	
-	
-	NormalZombie.prototype.render = function (ctx) {
-	  Util.render_circle.call(this, 25, "green", ctx);
-	};
-	
-	NormalZombie.prototype.doZombieThings = function () {
-	  this.regulateAwakenStatus();
-	  if (this.awake) { this.chasePlayer(); }
-	};
-	
-	NormalZombie.prototype.chasePlayer = function () {
-	  this.move();
-	};
-	
-	
-	NormalZombie.prototype.regulateAwakenStatus = function () {
-	
-	  var playerDistance = Util.distance(this.x, this.player.x, this.y, this.player.y)
-	  if (playerDistance < this.awakenRange) { this.awake = true }
-	};
-	
-	NormalZombie.prototype.animateRight = function (ctx) {
-	
-	  var millisecondCounter = (new Date()).getMilliseconds();
-	  if (millisecondCounter < 250 && this.awake) {
-	    ctx.drawImage(this.image, 0, 150, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
-	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.awake) {
-	    ctx.drawImage(this.image, 33, 150, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
-	  } else  {
-	    ctx.drawImage(this.image, 64, 150, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
-	  }
-	};
-	
-	NormalZombie.prototype.animateLeft = function (ctx) {
-	  var millisecondCounter = (new Date()).getMilliseconds();
-	
-	  if (millisecondCounter < 250 && this.awake) {
-	    ctx.drawImage(this.image, 0, 85, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
-	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.awake) {
-	    ctx.drawImage(this.image, 33, 85, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
-	  } else {
-	    ctx.drawImage(this.image, 64, 85, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
-	  }
-	};
-	
-	NormalZombie.prototype.animateDown = function (ctx) {
-	  var millisecondCounter = (new Date()).getMilliseconds();
-	
-	  if (millisecondCounter < 250 && this.awake) {
-	    ctx.drawImage(this.image, 0, 23, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
-	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.awake) {
-	    ctx.drawImage(this.image, 64, 23, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
-	  } else {
-	    ctx.drawImage(this.image, 33, 23, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
-	  }
-	};
-	
-	NormalZombie.prototype.animateUp = function (ctx) {
-	  var millisecondCounter = (new Date()).getMilliseconds();
-	
-	  if (millisecondCounter < 250 && this.awake) {
-	    ctx.drawImage(this.image, 0, 215, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
-	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.awake) {
-	    ctx.drawImage(this.image, 64, 215, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
-	  } else {
-	    ctx.drawImage(this.image, 33, 215, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
-	  }
-	};
-	
-	
-	
-	module.exports = NormalZombie;
-
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Util = __webpack_require__(4);
-	
-	function Zombie(x, y, player, theta, speed, image) {
-	  this.x = x;
-	  this.y = y;
-	  this.player = player;
-	  this.speed = speed;
-	  this.theta = theta;
-	  this.image = image
-	
-	  this.herdingCoefficent = 40;
-	
-	  this.otherZombies = [];
-	
-	  this.awake = false;
-	  this.moving = false;
-	}
-	
-	Zombie.prototype.move = function () {
-	  var chasePlayerVec = this.chasePlayerVec();
-	  var separationVec = this.separationVec();
-	
-	  var summedVec = [
-	    chasePlayerVec[0] + separationVec[0],
-	    chasePlayerVec[1] + separationVec[1]
-	  ]
-	
-	  var movementVec = Util.limitVector(summedVec, this.speed, this.speed)
-	  this.x += summedVec[0];
-	  this.y -= summedVec[1];
-	};
-	
-	Zombie.prototype.chasePlayerVec = function () {
-	  this.theta = this.calculateTheta(this.player);
-	  var xComp = Math.cos(this.theta) * this.speed;
-	  var yComp = Math.sin(this.theta) * this.speed;
-	  return [xComp, yComp];
-	};
-	
-	Zombie.prototype.separationVec = function () {
-	  var separationVec = [0, 0];
-	  var that = this;
-	
-	  this.otherZombies.forEach(function (zombie){
-	    var magnitude = that.separationMagnitude(Util.distance(that.x, zombie.x, that.y, zombie.y));
-	    var theta = that.calculateTheta(zombie);
-	    separationVec = [
-	      separationVec[0] - Math.cos(theta) * magnitude,
-	      separationVec[1] - Math.sin(theta) * magnitude
-	    ]
-	  });
-	
-	  return separationVec;
-	};
-	
-	Zombie.prototype.separationMagnitude = function (distance) {
-	  return Math.pow(2, -distance/this.herdingCoefficent);
-	};
-	
-	
-	Zombie.prototype.calculateTheta = function (target) {
-	  return Math.atan2(this.y - target.y, target.x - this.x);
-	};
-	
-	Zombie.prototype.registerOtherZombie = function (zombie) {
-	  this.otherZombies.push(zombie);
-	}
-	
-	Zombie.prototype.animate = function (ctx) {
-	  switch (Util.direction(this.theta)) {
-	    case "RIGHT": this.animateRight(ctx); break;
-	    case "LEFT" : this.animateLeft(ctx);  break;
-	    case "DOWN" : this.animateDown(ctx);  break;
-	    case "UP"   : this.animateUp(ctx);    break;
-	  }
-	};
-	
-	Zombie.prototype.playerCaptured = function () {
-	  return (
-	    this.player.x < this.x + this.width  / 2 + 5 &&
-	    this.player.x > this.x - this.width  / 2 - 5 &&
-	    this.player.y < this.y + this.height / 2 + 5 &&
-	    this.player.y > this.y - this.height / 2 - 5 &&
-	    !this.player.warping
-	  )
-	};
-	
-	module.exports = Zombie;
-
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var ScrollingUtil = __webpack_require__(8);
-	var TitleScreen = __webpack_require__(9);
-	var HowToPlay = __webpack_require__(21);
-	var LevelOne = __webpack_require__(10);
+	var ScrollingUtil = __webpack_require__(3);
+	var TitleScreen = __webpack_require__(4);
+	var HowToPlay = __webpack_require__(5);
+	var LevelOne = __webpack_require__(6);
 	var LevelTwo = __webpack_require__(15);
 	var LevelThree = __webpack_require__(16);
 	var LevelFour = __webpack_require__(18);
 	var LevelFive = __webpack_require__(20);
-	var EndGame = __webpack_require__(22);
+	var EndGame = __webpack_require__(21);
 	
 	
 	function ZombiePlayeroom (ctx) {
@@ -645,7 +184,7 @@
 
 
 /***/ },
-/* 8 */
+/* 3 */
 /***/ function(module, exports) {
 
 	
@@ -692,14 +231,14 @@
 
 
 /***/ },
-/* 9 */
+/* 4 */
 /***/ function(module, exports) {
 
 	function TitleScreen(ctx, highestLevelReached) {
 	  this.ctx = ctx;
 	  this.highestLevel = highestLevelReached;
 	  this.scrollIdx = 0;
-	  this.centerHoriz = 100;
+	  this.centerHoriz = 127;
 	  this.centerVer = 0;
 	  this.inputReady = true;
 	  this.levelSelected = false;
@@ -739,19 +278,20 @@
 	  this.ctx.globalAlpha = 1;
 	  this.ctx.font = "18px serif";
 	
+	  var directionsHorizontalOffset = 23;
 	  this.ctx.fillText(
 	    "Use the arrow keys to navigate",
-	    455, 490
+	    455 + directionsHorizontalOffset, 490
 	  );
 	
 	  this.ctx.fillText(
 	    "Press space to choose",
-	    490, 520
+	    490 + directionsHorizontalOffset, 520
 	  );
 	
 	  this.ctx.fillText(
 	    "To scroll, hold 'u'",
-	    510, 550
+	    510 + directionsHorizontalOffset, 550
 	
 	  )
 	};
@@ -780,16 +320,14 @@
 	  if(this.inputReady) {
 	    if(key.isPressed("up")) {
 	      this.scrollUp();
-	      // console.log("test up");
 	    }
 	    if(key.isPressed("down")) {
 	      this.scrollDown();
-	      // console.log("test down");
 	    }
 	    this.readyNextInput()
 	  }
 	
-	  if(key.isPressed("space")) {
+	  if(key.isPressed("space") || key.isPressed("enter")) {
 	    if(this.scrollIdx === 5) {
 	      this.levelSelected = 0.5
 	    } else {
@@ -850,15 +388,81 @@
 
 
 /***/ },
-/* 10 */
+/* 5 */
+/***/ function(module, exports) {
+
+	function HowToPlay(ctx) {
+	  this.ctx = ctx;
+	  this.centerVer = 0;
+	  this.centerHor = 0;
+	}
+	
+	HowToPlay.prototype.play = function () {
+	  this.ctx.fillStyle = "black";
+	  this.ctx.fillRect(0,0,1200,700);
+	
+	  this.ctx.font = "48px serif";
+	  this.ctx.fillStyle = "white";
+	  this.ctx.fillText("How to PLAY", 300 + this.centerHor, 120 + this.centerVer);
+	
+	  this.ctx.font = "24px serif"
+	  this.ctx.fillText("CONTROLS :", 281 + this.centerHor, 170 + this.centerVer);
+	  this.ctx.fillText("LEVEL PROGRESSION :", 160 + this.centerHor, 260 + this.centerVer);
+	  this.ctx.fillText("ZOMBIES :", 300 + this.centerHor, 350 + this.centerVer);
+	  this.ctx.fillText("TO TITLE SCREEN :", 204 + this.centerHor, 400 + this.centerVer);
+	
+	  this.ctx.fillText(
+	    "Use the arrow keys to move. Hold space and press",
+	    500 + this.centerHor, 170 + this.centerVer
+	  )
+	
+	  this.ctx.fillText(
+	    "a direction to warp. Warp cooldown is 3 seconds.",
+	    500 + this.centerHor, 210 + this.centerVer
+	  )
+	
+	  this.ctx.fillText(
+	    "Light all torches to progress to the next level.",
+	    500 + this.centerHor, 260 + this.centerVer
+	  );
+	  this.ctx.fillText(
+	    "Torches are lit by standing near them.",
+	    500 + this.centerHor, 300 + this.centerVer
+	  )
+	
+	  this.ctx.fillText(
+	    "E-V-A-D-E.",
+	    500 + this.centerHor, 350 + this.centerVer
+	  );
+	
+	  this.ctx.fillText(
+	    "Press enter.",
+	    500 + this.centerHor, 400 + this.centerVer
+	  )
+	
+	};
+	
+	HowToPlay.prototype.finished = function () {
+	  return key.isPressed("enter");
+	};
+	
+	HowToPlay.prototype.lost = function () {
+	  return false;
+	};
+	
+	module.exports = HowToPlay;
+
+
+/***/ },
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Util = __webpack_require__(4);
-	var Level = __webpack_require__(11);
-	var Torch = __webpack_require__(13);
-	var Wall = __webpack_require__(14);
-	var Player = __webpack_require__(3);
-	var NormalZombie = __webpack_require__(5);
+	var Util = __webpack_require__(7);
+	var Level = __webpack_require__(8);
+	var Torch = __webpack_require__(10);
+	var Wall = __webpack_require__(11);
+	var Player = __webpack_require__(12);
+	var NormalZombie = __webpack_require__(13);
 	
 	function LevelOne(ctx) {
 	  this.ctx = ctx;
@@ -915,10 +519,62 @@
 
 
 /***/ },
-/* 11 */
+/* 7 */
+/***/ function(module, exports) {
+
+	var Util = {
+	  render_circle: function ( radius, color, ctx) {
+	    ctx.fillStyle = color;
+	    ctx.beginPath();
+	
+	    ctx.arc(
+	      this.x,
+	      this.y,
+	      radius,
+	      0,
+	      2 * Math.PI,
+	      false
+	    );
+	
+	    ctx.fill();
+	  },
+	
+	  inherits: function (child, parent) {
+	    var Surrogate = function () {};
+	    Surrogate.prototype = parent.prototype;
+	    child.prototype = new Surrogate();
+	    child.prototype.constructor = child;
+	  },
+	
+	  distance: function (x1, x2, y1, y2) {
+	    return Math.sqrt( Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2) );
+	  },
+	
+	  direction: function (theta) {
+	    if (theta <  Math.PI / 4 && theta > -1 * Math.PI / 4)    { return "RIGHT"; }
+	    if (theta < -Math.PI / 4 && theta > -3 * Math.PI / 4)    { return "DOWN";  }
+	    if (theta >  Math.PI / 4 && theta <  3 * Math.PI / 4)    { return "UP";    }
+	    if (theta <  Math.PI     && theta >  3 * Math.PI / 4 ||
+	        theta > -Math.PI     && theta < -3 * Math.PI / 4)    { return "LEFT";  }
+	
+	  },
+	
+	  limitVector: function (vector, limit) {
+	    var oldMagnitude = this.distance(0, vector[0], 0, vector[1]);
+	    if (oldMagnitude < limit) { return vector }
+	    var normalizer = limit / oldMagnitude;
+	    return [ vector[0] * normalizer, vector[1] * normalizer];
+	  }
+	}
+	
+	module.exports = Util;
+
+
+/***/ },
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Util = __webpack_require__(12);
+	var Util = __webpack_require__(9);
 	
 	function Level() {
 	  this.phase = 0;
@@ -1096,7 +752,7 @@
 
 
 /***/ },
-/* 12 */
+/* 9 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -1179,10 +835,10 @@
 
 
 /***/ },
-/* 13 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Util = __webpack_require__(4);
+	var Util = __webpack_require__(7);
 	
 	function Torch (x, y, player) {
 	  this.x = x;
@@ -1222,7 +878,7 @@
 
 
 /***/ },
-/* 14 */
+/* 11 */
 /***/ function(module, exports) {
 
 	function Wall (x, y, width, height, player) {
@@ -1311,15 +967,435 @@
 
 
 /***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var util = __webpack_require__(7)
+	
+	function Player(x, y, ctx){
+	  this.x = x;
+	  this.y = y;
+	  this.ctx = ctx
+	  this.facing = "DOWN";
+	  this.moving = false;
+	  this.speed = 5;
+	  this.image = document.getElementById('player_spread');
+	  this.width = 30;
+	  this.height = 44;
+	
+	  this.xOffset = 20;
+	
+	  this.warping = false;
+	  this.warpReady = true;
+	}
+	
+	Player.prototype.animate = function (ctx) {
+	  // util.render_circle.call(this, 25, "blue", ctx);
+	  if(!this.warping) {this.animateRegular(ctx);}
+	};
+	
+	
+	Player.prototype.moveUp = function () {
+	
+	  this.y -= this.speed;
+	  this.moving = true;
+	  this.facing = "UP";
+	};
+	
+	Player.prototype.moveDown = function () {
+	  this.y += this.speed;
+	  this.moving = true;
+	  this.facing = "DOWN";
+	};
+	
+	Player.prototype.moveRight = function () {
+	  this.x += this.speed;
+	  this.moving = true;
+	  this.facing = "RIGHT";
+	};
+	
+	Player.prototype.moveLeft = function () {
+	  this.x -= this.speed;
+	  this.moving = true;
+	  this.facing = "LEFT";
+	};
+	
+	Player.prototype.animateRegular = function (ctx) {
+	  switch (this.facing) {
+	    case "DOWN" :this.animateDown(ctx);  break;
+	    case "UP"   :this.animateUp(ctx);    break;
+	    case "RIGHT":this.animateRight(ctx); break;
+	    case "LEFT" :this.animateLeft(ctx);  break;
+	  }
+	};
+	
+	Player.prototype.animateDown = function (ctx) {
+	  var millisecondCounter = (new Date()).getMilliseconds();
+	
+	  if (millisecondCounter < 250 && this.moving) {
+	    ctx.drawImage(this.image, 69, 67, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
+	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.moving) {
+	    ctx.drawImage(this.image, 121, 67, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
+	  } else  {
+	    ctx.drawImage(this.image, 95, 67, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
+	  }
+	};
+	
+	Player.prototype.animateUp = function (ctx) {
+	  var millisecondCounter = (new Date()).getMilliseconds();
+	
+	  if (millisecondCounter < 250 && this.moving) {
+	    ctx.drawImage(this.image, 69, 1, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
+	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.moving) {
+	    ctx.drawImage(this.image, 121, 1, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
+	  } else  {
+	    ctx.drawImage(this.image, 95, 1, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
+	  }
+	};
+	
+	Player.prototype.animateRight = function (ctx) {
+	  var millisecondCounter = (new Date()).getMilliseconds();
+	
+	  if (millisecondCounter < 250 && this.moving) {
+	    ctx.drawImage(this.image, 70, 33, 23, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
+	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.moving) {
+	    ctx.drawImage(this.image, 120, 33, 22, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
+	  } else  {
+	    ctx.drawImage(this.image, 95, 33, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
+	  }
+	};
+	
+	Player.prototype.animateLeft = function (ctx) {
+	  var millisecondCounter = (new Date()).getMilliseconds();
+	
+	  if (millisecondCounter < 250 && this.moving) {
+	    ctx.drawImage(this.image, 69, 98, 23, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
+	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.moving) {
+	    ctx.drawImage(this.image, 120, 98, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
+	  } else  {
+	    ctx.drawImage(this.image, 95, 98, 21, 30, this.x - this.xOffset, this.y - 30, this.width, this.height);
+	  }
+	};
+	
+	Player.prototype.warpUp = function () {
+	  this._warp([120, 161], [165, 225], [241, 225], [120, 127], "UP")
+	};
+	
+	
+	Player.prototype.warpDown = function (entrance, exit) {
+	  this._warp([190, 160], [190, 192], [190, 160], [140, 225], "DOWN", entrance, exit);
+	};
+	
+	Player.prototype.warpRight = function () {
+	  this._warp([215, 128], [261, 160], [190, 129], [239, 129], "RIGHT");
+	};
+	
+	Player.prototype.warpLeft = function () {
+	  this._warp([261, 128], [215, 160], [190, 225], [71, 225], "LEFT");
+	};
+	
+	Player.prototype.warpIncrementer = function (direction, distance) {
+	  // debugger
+	  switch(direction) {
+	    case "DOWN" : this.y += distance; break;
+	    case "RIGHT": this.x += distance; break;
+	    case "LEFT" : this.x -= distance; break;
+	    case "UP"   : this.y -= distance; break;
+	  }
+	};
+	
+	Player.prototype._warp = function (img1, img2, img3, img4, direction, entrance, exit) {
+	  this.warping = true;
+	  this.warpReady = false;
+	
+	  if (!entrance) {
+	    this.showFrame1(img1);
+	    this.executeFrame2AndClearFrame1(img2);
+	  }
+	
+	  if(!exit) {
+	    this.showFrame3(img3, direction);
+	    this.executeFrame4AndClearFrame3(img4, direction)
+	    this.startWarpCoolDown();
+	  }
+	};
+	
+	Player.prototype.showFrame1 = function (imgCoords) {
+	  var self = this;
+	
+	  frame1ID = setInterval(function () {
+	    self.ctx.drawImage(
+	      self.image,
+	      imgCoords[0], imgCoords[1],
+	      27, 35,
+	      self.x - self.xOffset, self.y -30,
+	      self.width, self.height
+	    );
+	  },1000/50)
+	};
+	
+	Player.prototype.executeFrame2AndClearFrame1 = function ( imgCoords) {
+	  var self = this;
+	
+	  setTimeout(function(){
+	    clearInterval(frame1ID);
+	    frame2ID = setInterval(function () {
+	      self.ctx.drawImage(
+	        self.image,
+	        imgCoords[0], imgCoords[1],
+	        27, 34,
+	        self.x - self.xOffset, self.y - 30,
+	        self.width, self.height);
+	    }, 1000 / 50)
+	  }, 100)
+	
+	  setTimeout(function () { clearInterval(frame2ID); }, 200)
+	};
+	
+	Player.prototype.showFrame3 = function (imgCoords, direction) {
+	  var self = this;
+	
+	  setTimeout (function () {
+	    self.warpIncrementer(direction, 135);
+	    frame3ID = setInterval(function () {
+	      self.ctx.drawImage(
+	        self.image,
+	        imgCoords[0], imgCoords[1],
+	        27, 35,
+	        self.x - self.xOffset, self.y -30,
+	        self.width, self.height
+	      );
+	    }, 1000/50)
+	  }, 500)
+	};
+	
+	Player.prototype.executeFrame4AndClearFrame3 = function (imgCoords, direction) {
+	  var self = this;
+	
+	  setTimeout (function () {
+	    clearInterval(frame3ID);
+	    self.warpIncrementer(direction, 20);
+	    frame4 = setInterval(function () {
+	      self.ctx.drawImage(
+	        self.image,
+	        imgCoords[0], imgCoords[1],
+	        27, 34,
+	        self.x - self.xOffset, self.y - 30,
+	        self.width, self.height
+	      );
+	    }, 1000/50)
+	  }, 610)
+	
+	  setTimeout(function(){
+	    self.warping = false;
+	    clearInterval(frame4)
+	  }, 710)
+	};
+	
+	Player.prototype.startWarpCoolDown = function () {
+	  var self = this;
+	  setTimeout(function () { self.warpReady = true; }, 3710)
+	};
+	
+	module.exports = Player;
+
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Util = __webpack_require__(7);
+	var Zombie = __webpack_require__(14);
+	
+	function NormalZombie(x, y, player, theta) {
+	
+	
+	  Zombie.call(this, x, y, player, theta, 2, document.getElementById('test'));
+	  this.awakenRange = 210;
+	  this.width = 35;
+	  this.height = 42;
+	};
+	
+	Util.inherits(NormalZombie, Zombie);
+	
+	
+	NormalZombie.prototype.render = function (ctx) {
+	  Util.render_circle.call(this, 25, "green", ctx);
+	};
+	
+	NormalZombie.prototype.doZombieThings = function () {
+	  this.regulateAwakenStatus();
+	  if (this.awake) { this.chasePlayer(); }
+	};
+	
+	NormalZombie.prototype.chasePlayer = function () {
+	  this.move();
+	};
+	
+	
+	NormalZombie.prototype.regulateAwakenStatus = function () {
+	
+	  var playerDistance = Util.distance(this.x, this.player.x, this.y, this.player.y)
+	  if (playerDistance < this.awakenRange) { this.awake = true }
+	};
+	
+	NormalZombie.prototype.animateRight = function (ctx) {
+	
+	  var millisecondCounter = (new Date()).getMilliseconds();
+	  if (millisecondCounter < 250 && this.awake) {
+	    ctx.drawImage(this.image, 0, 150, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
+	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.awake) {
+	    ctx.drawImage(this.image, 33, 150, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
+	  } else  {
+	    ctx.drawImage(this.image, 64, 150, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
+	  }
+	};
+	
+	NormalZombie.prototype.animateLeft = function (ctx) {
+	  var millisecondCounter = (new Date()).getMilliseconds();
+	
+	  if (millisecondCounter < 250 && this.awake) {
+	    ctx.drawImage(this.image, 0, 85, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
+	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.awake) {
+	    ctx.drawImage(this.image, 33, 85, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
+	  } else {
+	    ctx.drawImage(this.image, 64, 85, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
+	  }
+	};
+	
+	NormalZombie.prototype.animateDown = function (ctx) {
+	  var millisecondCounter = (new Date()).getMilliseconds();
+	
+	  if (millisecondCounter < 250 && this.awake) {
+	    ctx.drawImage(this.image, 0, 23, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
+	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.awake) {
+	    ctx.drawImage(this.image, 64, 23, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
+	  } else {
+	    ctx.drawImage(this.image, 33, 23, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
+	  }
+	};
+	
+	NormalZombie.prototype.animateUp = function (ctx) {
+	  var millisecondCounter = (new Date()).getMilliseconds();
+	
+	  if (millisecondCounter < 250 && this.awake) {
+	    ctx.drawImage(this.image, 0, 215, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
+	  } else if (millisecondCounter >= 500 && millisecondCounter < 750 && this.awake) {
+	    ctx.drawImage(this.image, 64, 215, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
+	  } else {
+	    ctx.drawImage(this.image, 33, 215, 33, 42, this.x - 18, this.y - 25, this.width, this.height);
+	  }
+	};
+	
+	
+	
+	module.exports = NormalZombie;
+
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Util = __webpack_require__(7);
+	
+	function Zombie(x, y, player, theta, speed, image) {
+	  this.x = x;
+	  this.y = y;
+	  this.player = player;
+	  this.speed = speed;
+	  this.theta = theta;
+	  this.image = image
+	
+	  this.herdingCoefficent = 40;
+	
+	  this.otherZombies = [];
+	
+	  this.awake = false;
+	  this.moving = false;
+	}
+	
+	Zombie.prototype.move = function () {
+	  var chasePlayerVec = this.chasePlayerVec();
+	  var separationVec = this.separationVec();
+	
+	  var summedVec = [
+	    chasePlayerVec[0] + separationVec[0],
+	    chasePlayerVec[1] + separationVec[1]
+	  ]
+	
+	  var movementVec = Util.limitVector(summedVec, this.speed)
+	  this.x += summedVec[0];
+	  this.y -= summedVec[1];
+	};
+	
+	Zombie.prototype.chasePlayerVec = function () {
+	  this.theta = this.calculateTheta(this.player);
+	  var xComp = Math.cos(this.theta) * this.speed;
+	  var yComp = Math.sin(this.theta) * this.speed;
+	  return [xComp, yComp];
+	};
+	
+	Zombie.prototype.separationVec = function () {
+	  var separationVec = [0, 0];
+	  var that = this;
+	
+	  this.otherZombies.forEach(function (zombie){
+	    var magnitude = that.separationMagnitude(Util.distance(that.x, zombie.x, that.y, zombie.y));
+	    var theta = that.calculateTheta(zombie);
+	    separationVec = [
+	      separationVec[0] - Math.cos(theta) * magnitude,
+	      separationVec[1] - Math.sin(theta) * magnitude
+	    ]
+	  });
+	
+	  return separationVec;
+	};
+	
+	Zombie.prototype.separationMagnitude = function (distance) {
+	  return Math.pow(2, -distance/this.herdingCoefficent);
+	};
+	
+	
+	Zombie.prototype.calculateTheta = function (target) {
+	  return Math.atan2(this.y - target.y, target.x - this.x);
+	};
+	
+	Zombie.prototype.registerOtherZombie = function (zombie) {
+	  this.otherZombies.push(zombie);
+	}
+	
+	Zombie.prototype.animate = function (ctx) {
+	  switch (Util.direction(this.theta)) {
+	    case "RIGHT": this.animateRight(ctx); break;
+	    case "LEFT" : this.animateLeft(ctx);  break;
+	    case "DOWN" : this.animateDown(ctx);  break;
+	    case "UP"   : this.animateUp(ctx);    break;
+	  }
+	};
+	
+	Zombie.prototype.playerCaptured = function () {
+	  return (
+	    this.player.x < this.x + this.width  / 2 + 5 &&
+	    this.player.x > this.x - this.width  / 2 - 5 &&
+	    this.player.y < this.y + this.height / 2 + 5 &&
+	    this.player.y > this.y - this.height / 2 - 5 &&
+	    !this.player.warping
+	  )
+	};
+	
+	module.exports = Zombie;
+
+
+/***/ },
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Util = __webpack_require__(4);
-	var Level = __webpack_require__(11);
-	var Torch = __webpack_require__(13);
-	var Wall = __webpack_require__(14);
-	var Player = __webpack_require__(3);
-	var NormalZombie = __webpack_require__(5);
+	var Util = __webpack_require__(7);
+	var Level = __webpack_require__(8);
+	var Torch = __webpack_require__(10);
+	var Wall = __webpack_require__(11);
+	var Player = __webpack_require__(12);
+	var NormalZombie = __webpack_require__(13);
 	
 	function LevelTwo(ctx) {
 	  this.ctx = ctx;
@@ -1384,12 +1460,12 @@
 /* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Util = __webpack_require__(4);
-	var Level = __webpack_require__(11);
-	var Torch = __webpack_require__(13);
-	var Wall = __webpack_require__(14);
-	var Player = __webpack_require__(3);
-	var NormalZombie = __webpack_require__(5);
+	var Util = __webpack_require__(7);
+	var Level = __webpack_require__(8);
+	var Torch = __webpack_require__(10);
+	var Wall = __webpack_require__(11);
+	var Player = __webpack_require__(12);
+	var NormalZombie = __webpack_require__(13);
 	var RunnerZombie = __webpack_require__(17);
 	
 	function LevelThree(ctx) {
@@ -1452,8 +1528,8 @@
 /* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var NormalZombie = __webpack_require__(5);
-	var Util = __webpack_require__(4);
+	var NormalZombie = __webpack_require__(13);
+	var Util = __webpack_require__(7);
 	
 	function RunnerZombie(x, y, player, theta) {
 	  NormalZombie.call(this, x, y, player, theta);
@@ -1471,11 +1547,11 @@
 /* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Util = __webpack_require__(4);
-	var Level = __webpack_require__(11);
-	var Torch = __webpack_require__(13);
-	var Wall = __webpack_require__(14);
-	var Player = __webpack_require__(3);
+	var Util = __webpack_require__(7);
+	var Level = __webpack_require__(8);
+	var Torch = __webpack_require__(10);
+	var Wall = __webpack_require__(11);
+	var Player = __webpack_require__(12);
 	var BoneZombie = __webpack_require__(19);
 	
 	function LevelFour(ctx) {
@@ -1519,8 +1595,8 @@
 /* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
-	Util = __webpack_require__(4);
-	Zombie = __webpack_require__(6);
+	Util = __webpack_require__(7);
+	Zombie = __webpack_require__(14);
 	
 	function BoneZombie(x, y, player, theta, wall, torch) {
 	  Zombie.call(this, x, y, player, theta, 13, document.getElementById("test"));
@@ -1661,12 +1737,12 @@
 /* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Util = __webpack_require__(4);
-	var Level = __webpack_require__(11);
-	var Torch = __webpack_require__(13);
-	var Wall = __webpack_require__(14);
-	var Player = __webpack_require__(3);
-	var NormalZombie = __webpack_require__(5);
+	var Util = __webpack_require__(7);
+	var Level = __webpack_require__(8);
+	var Torch = __webpack_require__(10);
+	var Wall = __webpack_require__(11);
+	var Player = __webpack_require__(12);
+	var NormalZombie = __webpack_require__(13);
 	var RunnerZombie = __webpack_require__(17);
 	var BoneZombie = __webpack_require__(19);
 	
@@ -1732,75 +1808,9 @@
 
 /***/ },
 /* 21 */
-/***/ function(module, exports) {
-
-	function HowToPlay(ctx) {
-	  this.ctx = ctx;
-	  this.centerVer = 0;
-	  this.centerHor = 0;
-	}
-	
-	HowToPlay.prototype.play = function () {
-	  this.ctx.fillStyle = "black";
-	  this.ctx.fillRect(0,0,1200,700);
-	
-	  this.ctx.font = "48px serif";
-	  this.ctx.fillStyle = "white";
-	  this.ctx.fillText("How to PLAY", 300 + this.centerHor, 120 + this.centerVer);
-	
-	  this.ctx.font = "24px serif"
-	  this.ctx.fillText("CONTROLS :", 281 + this.centerHor, 170 + this.centerVer);
-	  this.ctx.fillText("LEVEL PROGRESSION :", 160 + this.centerHor, 260 + this.centerVer);
-	  this.ctx.fillText("ZOMBIES :", 300 + this.centerHor, 350 + this.centerVer);
-	  this.ctx.fillText("TO TITLE SCREEN :", 204 + this.centerHor, 400 + this.centerVer);
-	
-	  this.ctx.fillText(
-	    "Use the arrow keys to move. Hold space and press",
-	    500 + this.centerHor, 170 + this.centerVer
-	  )
-	
-	  this.ctx.fillText(
-	    "a direction to warp. Warp cooldown is 3 seconds.",
-	    500 + this.centerHor, 210 + this.centerVer
-	  )
-	
-	  this.ctx.fillText(
-	    "Light all torches to progress to the next level.",
-	    500 + this.centerHor, 260 + this.centerVer
-	  );
-	  this.ctx.fillText(
-	    "Torches are lit by standing near them.",
-	    500 + this.centerHor, 300 + this.centerVer
-	  )
-	
-	  this.ctx.fillText(
-	    "E-V-A-D-E.",
-	    500 + this.centerHor, 350 + this.centerVer
-	  );
-	
-	  this.ctx.fillText(
-	    "Press enter.",
-	    500 + this.centerHor, 400 + this.centerVer
-	  )
-	
-	};
-	
-	HowToPlay.prototype.finished = function () {
-	  return key.isPressed("enter");
-	};
-	
-	HowToPlay.prototype.lost = function () {
-	  return false;
-	};
-	
-	module.exports = HowToPlay;
-
-
-/***/ },
-/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Util = __webpack_require__(12);
+	var Util = __webpack_require__(9);
 	
 	function EndGame (ctx) {
 	  this.ctx = ctx;

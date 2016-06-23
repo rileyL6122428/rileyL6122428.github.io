@@ -2,7 +2,7 @@ function TitleScreen(ctx, highestLevelReached) {
   this.ctx = ctx;
   this.highestLevel = highestLevelReached;
   this.scrollIdx = 0;
-  this.centerHoriz = 100;
+  this.centerHoriz = 127;
   this.centerVer = 0;
   this.inputReady = true;
   this.levelSelected = false;
@@ -42,19 +42,20 @@ TitleScreen.prototype.render = function () {
   this.ctx.globalAlpha = 1;
   this.ctx.font = "18px serif";
 
+  var directionsHorizontalOffset = 23;
   this.ctx.fillText(
     "Use the arrow keys to navigate",
-    455, 490
+    455 + directionsHorizontalOffset, 490
   );
 
   this.ctx.fillText(
     "Press space to choose",
-    490, 520
+    490 + directionsHorizontalOffset, 520
   );
 
   this.ctx.fillText(
     "To scroll, hold 'u'",
-    510, 550
+    510 + directionsHorizontalOffset, 550
 
   )
 };
@@ -83,16 +84,14 @@ TitleScreen.prototype.manageOptionScroll = function () {
   if(this.inputReady) {
     if(key.isPressed("up")) {
       this.scrollUp();
-      // console.log("test up");
     }
     if(key.isPressed("down")) {
       this.scrollDown();
-      // console.log("test down");
     }
     this.readyNextInput()
   }
 
-  if(key.isPressed("space")) {
+  if(key.isPressed("space") || key.isPressed("enter")) {
     if(this.scrollIdx === 5) {
       this.levelSelected = 0.5
     } else {
