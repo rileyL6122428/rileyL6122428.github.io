@@ -127,7 +127,7 @@ TitleScreen.prototype.manageOptionScroll = function () {
     }
     this.readyNextInput()
   }
-
+  debugger
   if(key.isPressed("space")) {
     if(this.scrollIdx === 5) {
       this.levelSelected = 0.5
