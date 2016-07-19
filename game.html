@@ -2,7 +2,10 @@
 <style>
 html, body {
   width:  100%;
+  min-width: 1192px;
   height: 100%;
+
+
   margin: 0px;
   background-color: black;
 }
@@ -12,13 +15,20 @@ img {
   width: 0px;
 }
 
+div.links {
+  display: block;
+  width: 195px;
+
+  margin: auto;
+}
+
 a {
   margin-left: 15px;
   color: red;
 }
 
 a:first-of-type {
-  margin-left: 462px;
+  margin-left: 0;
 }
 
 canvas {
@@ -41,9 +51,13 @@ canvas {
 <img id="player_spread" class="game" src="./zombie_game/assets/images/Fumiko.png" />
 <img id="test" class="game" src="./zombie_game/assets/images/zombie_n_skeleton2.png" />
 <img id="blueZombie" class="game" src="./zombie_game/assets/images/zombie_n_skeletonblue.png" />
-<a href="https://rileyl6122428.github.io/">Creator</a>
-<a href="https://www.linkedin.com/in/riley-littlefield-914142123">LinkedIn</a>
-<a href="https://github.com/rileyL6122428/ZombieBrowserGame">GitHub</a>
+
+<div class="links">
+  <a href="https://rileyl6122428.github.io/">Creator</a>
+  <a href="https://www.linkedin.com/in/riley-littlefield-914142123">LinkedIn</a>
+  <a href="https://github.com/rileyL6122428/ZombieBrowserGame">GitHub</a>
+</div>
+
 <canvas id="game-canvas" class="game" ></canvas>
 <script src="./zombie_game/lib/keymaster.js"></script>
 <script src="./zombie_game/bundle.js" charset="utf-8"></script>
