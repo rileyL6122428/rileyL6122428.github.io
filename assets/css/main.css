@@ -1547,6 +1547,7 @@
 
 	h2.project-title {
 		font-size: 24px;
+		text-align: center;
 	}
 
 	p.project-description {
@@ -2663,4 +2664,22 @@
 				opacity: 0.5;
 			}
 
+	}
+
+	/*NOTE MY EDITS AFTER JULY 21st*/
+
+	a#zomphonia-live {
+		margin-left: 110px;
+	}
+
+	a#zomphonia-repo {
+		margin-left: 50px;
+	}
+
+	a#chess-repo {
+		margin-left: 160px;
+	}
+
+	a#anki-live {
+		margin-left: 165px;
 	}
