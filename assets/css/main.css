@@ -202,56 +202,56 @@
 .row a.image.fit.rails:hover div.rails:after {
 	content: "Ruby on Rails";
 	position: absolute;
-	left: 23%;
-	top: 79%;
+	left: 13.5%;
+	top: 83%;
 }
 
 .row a.image.fit.javascript:hover div.javascript:after {
 	content: "JavaScript";
 	position: absolute;
-	left: 29%;
+	left: 21.5%;
 	top: 92%;
 }
 
 .row a.image.fit.react:hover div.react:after {
 	content: "React";
 	position: absolute;
-	left: 39%;
+	left: 34%;
 	top: 88%;
 }
 
 .row a.image.fit.html:hover div.html:after {
 	content: "HTML";
 	position: absolute;
-	left: 39%;
+	left: 33%;
 	top: 88%;
 }
 
 .row a.image.fit.postgresql:hover div.postgresql:after {
 	content: "PostgreSQL";
 	position: absolute;
-	left: 30%;
+	left: 21%;
 	top: 91%;
 }
 
 .row a.image.fit.git:hover div.git:after {
 	content: "Git";
 	position: absolute;
-	left: 44%;
-	top: 93%;
+	left: 39.5%;
+	top: 92%;
 }
 
 .row a.image.fit.jquery:hover div.jquery:after {
 	content: "jQuery";
 	position: absolute;
-	left: 38%;
-	top: 85%;
+	left: 31%;
+	top: 83%;
 }
 
 .row a.image.fit.css:hover div.css:after {
 	content: "CSS";
 	position: absolute;
-	left: 43%;
+	left: 38%;
 	top: 88%;
 }
 
@@ -265,14 +265,14 @@
 .row a.image.fit.processing:hover div.processing:after {
 	content: "Processing";
 	position: absolute;
-	left: 29%;
+	left: 21%;
 	top: 91%;
 }
 
 .row a.image.fit.mathematica:hover div.mathematica:after {
 	content: "Mathematica";
 	position: absolute;
-	left: 27%;
+	left: 16%;
 	top: 90%;
 }
 
@@ -1574,7 +1574,8 @@
 
 		.image.fit {
 			display: block;
-			width: 100%;
+			width: 80%;
+			margin-left: 10%;
 		}
 
 		.image.left {
