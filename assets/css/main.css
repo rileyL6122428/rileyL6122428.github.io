@@ -1578,6 +1578,10 @@
 			margin-left: 15%;
 		}
 
+		.image.fit.project-image {
+			margin-left: 0;
+		}
+
 		.image.left {
 			float: left;
 			margin: 0 2em 2em 0;
@@ -1908,8 +1912,8 @@
 				}
 
 				.box.style1 .image img.ankiclone-preview {
-					/*width: 100%;*/
-					left: -129px;
+					width: 106%;
+					left: -13px;
 
 				}
 
