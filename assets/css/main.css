@@ -1912,9 +1912,11 @@
 				}
 
 				.box.style1 .image img.ankiclone-preview {
-					width: 106%;
-					left: -13px;
-
+					object-fit: scale-down;
+					/*width: 106%;*/
+					/*left: -13px;*/
+					width: 480px;
+					background: white;
 				}
 
 				.box.style1 .image img.terminal-chess {
