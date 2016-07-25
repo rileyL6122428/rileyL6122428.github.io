@@ -2676,7 +2676,7 @@
 	/*NOTE MY EDITS AFTER JULY 21st*/
 
 	a#zomphonia-live {
-		margin-left: 110px;
+		margin-left: 118px;
 	}
 
 	a#zomphonia-repo {
@@ -2688,5 +2688,9 @@
 	}
 
 	a#anki-live {
-		margin-left: 165px;
+		margin-left: 118px;
+	}
+
+	a#anki-repo {
+		margin-left: 50px;
 	}
