@@ -191,9 +191,8 @@
 
 /* Grid */
 
-/* ICON HOVERS */
-.row a.image.fit:hover div:after {
-	/*color: gold;*/
+/* ICON HOVERS NOTE REINSTATE THIS AFTER JOB HUNT */
+/*.row a.image.fit:hover div:after {
 	background-color: white;
 	border-radius: 5px;
 	padding: 0px 6px;
@@ -274,8 +273,92 @@
 	position: absolute;
 	left: 11%;
 	top: 90%;
+}*/
+
+/*TO BE DELETED AND REPLACED WITH ABOVE AFTER JOB HUNT*/
+.row  div:after {
+	background-color: white;
+	border-radius: 5px;
+	padding: 0px 6px;
 }
 
+.row div.rails:after {
+	content: "Ruby on Rails";
+	position: absolute;
+	left: 9%;
+	top: 83%;
+}
+
+.row div.javascript:after {
+	content: "JavaScript";
+	position: absolute;
+	left: 17%;
+	top: 92%;
+}
+
+.row div.react:after {
+	content: "React";
+	position: absolute;
+	left: 31.5%;
+	top: 88%;
+}
+
+.row div.html:after {
+	content: "HTML";
+	position: absolute;
+	left: 30.5%;
+	top: 88%;
+}
+
+.row div.postgresql:after {
+	content: "PostgreSQL";
+	position: absolute;
+	left: 16%;
+	top: 91%;
+}
+
+.row div.git:after {
+	content: "Git";
+	position: absolute;
+	left: 39.5%;
+	top: 92%;
+}
+
+.row div.jquery:after {
+	content: "jQuery";
+	position: absolute;
+	left: 31%;
+	top: 83%;
+}
+
+.row div.css:after {
+	content: "CSS";
+	position: absolute;
+	left: 35%;
+	top: 88%;
+}
+
+.row div.java:after {
+	content: "Java";
+	position: absolute;
+	left: 34%;
+	top: 93%;
+}
+
+.row div.processing:after {
+	content: "Processing";
+	position: absolute;
+	left: 16%;
+	top: 91%;
+}
+
+.row div.mathematica:after {
+	content: "Mathematica";
+	position: absolute;
+	left: 11%;
+	top: 90%;
+}
+/*END SHOULD BE REPLACED AFTER JOB HUNT SECTION*/
 	.row {
 		border-bottom: solid 1px transparent;
 		-moz-box-sizing: border-box;
@@ -2676,7 +2759,7 @@
 	/*NOTE MY EDITS AFTER JULY 21st*/
 
 	a#zomphonia-live {
-		margin-left: 118px;
+		margin-left: 11px;
 	}
 
 	a#zomphonia-repo {
@@ -2688,7 +2771,7 @@
 	}
 
 	a#anki-live {
-		margin-left: 118px;
+		margin-left: 11px;
 	}
 
 	a#anki-repo {
