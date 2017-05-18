@@ -45,9 +45,9 @@ conole.log("hello world")
 - hello world
 - hello world
 
-[] hello world
-[x] hello world
-[] hello world
+- [ ] hello world
+- [ ] hello world
+- [x] hello world
 
 
   * let's
