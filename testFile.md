@@ -6,17 +6,39 @@ categories: jekyll update
 markdown: kramdown
 ---
 
-#Hello world
+Hello world
+===========
 
-##Hello World
+Hello World
+-----------
 
-###Hello world
+Hello world
+=
+
+# Hello World
+
+## Hello World
+
+### Hello World
+
+~~~ ruby
+def what?
+  42
+end
+~~~
+
+~~~ JavaScript
+conole.log("hello world")
+~~~
+
+
+> Hello World
 
 *Hello world*
 
 **Hello World**
 
-```javascript
+```JavaScript
   console.log("hello world");
 ```
 
@@ -36,3 +58,20 @@ markdown: kramdown
   * rendered
   * as
   * markdown
+
+
+1. hello world
+2. hello world
+
+
+definition term 1
+definition term 2
+: This is the first line. Since the first non-space characters appears in
+column 3, all other lines have to be indented 2 spaces (or lazy syntax may
+  be used after an indented line). This tells kramdown that the lines
+  belong to the definition.
+:       This is the another definition for the same term. It uses a
+        different number of spaces for indentation which is okay but
+        should generally be avoided.
+   : The definition marker is indented 3 spaces which is allowed but
+     should also be avoided.
