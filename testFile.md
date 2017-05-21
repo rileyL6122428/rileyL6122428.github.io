@@ -4,7 +4,7 @@
   lsi:         false
   excerpt_separator: "\n\n"
   incremental: false
-  
+
   kramdown:
     auto_ids:       true
     entity_output:  as_char
@@ -84,3 +84,8 @@ column 3, all other lines have to be indented 2 spaces (or lazy syntax may
         should generally be avoided.
    : The definition marker is indented 3 spaces which is allowed but
      should also be avoided.
+
+| table header 1 | table header 2 |
+| -------------- | -------------- |
+| content        | content        |
+| content        | content        |
