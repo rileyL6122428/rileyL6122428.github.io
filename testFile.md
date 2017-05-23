@@ -96,3 +96,7 @@ column 3, all other lines have to be indented 2 spaces (or lazy syntax may
     <world>test</world>
   </hello>
 ```
+
+A test Link[sup](hello-world2.html)
+
+another[a link](hello-world.html)
